@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PropZona</title>
+    <style>
+        body {
+            
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: darksalmon;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .navbar .search-bar {
+            flex-grow: 2;
+            margin: 0 100px;
+        }
+        .navbar .search-bar input {
+            width: 100%;
+            padding: 5px;
+        }
+        .navbar .options {
+            display: flex;
+            gap: 10px;
+        }
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 750px;
+    overflow: hidden;
+}
+
+.carousel__button {
+    position: absolute;
+    top: 50%;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.carousel__button--left {
+    left: 10px;
+}
+
+.carousel__button--right {
+    right: 10px;
+}
+
+.carousel__track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel__slide {
+    width: 100%;
+    height: 300px;
+    flex: 0 0 auto;
+}
+
+.carousel__image {
+    width: 100%;
+    height: 100
+        
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="containerImg">
+            <a href="/" class="navbar-brand d-flex align-items-center">
+                <img class="logo" src="/img/logo4.png" width="50" height="50" alt="Img logo zp">
+            </a>
+        </div>
+        <div class="logo">PropZona</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar propiedades">
+        </div>
+        <div class="options" style="display: flex; justify-content: space-between;">
+            <div><img class="logo" src="/img/Perfil.png" width="40" height="40" alt="Perfil"></div>
+            <div><img class="logo" src="/img/favorito.png" width="37" height="37" alt="Favorito"></div>
+        </div>
+    </div>
+    <div class="carousel">
+    <button class="carousel__button carousel__button--left"> < </button>
+    <div class="carousel__track-container">
+        <ul class="carousel__track">
+            <li class="carousel__slide current-slide">
+                <img class="carousel__image" src="/img/pruebabody.png" alt="Imagen 1">
+            </li>
+            <li class="carousel__slide">
+                <img class="carousel__image" src="image2.jpg" alt="Imagen 2">
+            </li>
+            <!-- Agrega más imágenes aquí -->
+        </ul>
+    </div>
+    <button class="carousel__button carousel__button--right"> > </button>
+</div>
+
+    <footer>
+    <div class="footer-links">
+        <a href="#">Trabaja con nosotros</a>
+        <a href="#">Términos y condiciones</a>
+        <a href="#">Cómo alquilar en línea</a>
+        <a href="#">Accesibilidad</a>
+        <a href="#">Información de devolución</a>
+        <a href="#">Ayuda</a>
+        <a href="#">Políticas de privacidad</a>
+        <a href="#">Información sobre pagos</a>
+    </div>
+    <div class="footer-copyright">
+        Copyright © 2023 PropZona
+    </div>
+    <div class="footer-more-info">
+        <a href="#">Más información</a>
+    </div>
+</footer>
+
+</body>
+</html>
