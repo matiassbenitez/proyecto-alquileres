@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xlmns:th="http://www.thymeleaf.org" xlmns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Lista de Libros</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" th:href=@{/css/form-style.css}/>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Thirteenth navbar example">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample11" aria-controls="navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+                    <a class="navbar-brand col-lg-3 me-0" th:href=@{/}><img src="../icon.png" alt="alt"/>Bliblioteca</a>
+                    <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="true">Libros</a>
+                            <ul class="dropdown-menu">
+                                
+                                <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href=@{/libro/registrar}>Registrar Libro</a></li>
+                                <li><a class="dropdown-item" th:href=@{/libro/listar}>Listar Libros</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="true">Autores</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href=@{/autor/registrar}>Registrar Autor</a></li>
+                                <li><a class="dropdown-item" th:href=@{/autor/listar}>Listar Autores</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="true">Editoriales</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href=@{/editorial/registrar}>Registrar Editorial</a></li>
+                                <li><a class="dropdown-item" th:href=@{/editorial/listar}>Listar Editoriales</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+        <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+
+            <div class="container m-5 table-responsive">
+
+                <table class="table table-dark table-striped table-hover table-bordered table-m">
+
+                    <thead>
+                        <tr>
+                            <th scope="col">ID del Libro</th>
+                            <th scope="col">Título del Libro</th>
+                            <th scope="col">Ejemplares</th>
+                            <th scope="col">Fecha de Alta</th>
+                            <th scope="col">Autor</th>
+                            <th scope="col">Editorial</th>
+                    <th scope="col" sec:authorize="hasRole('ADMIN')" >Acciones</th>
+                        </tr>
+                    </thead>    
+                    <tbody th:each="libro : ${libros}">
+                        <tr>
+                            <th scope="row" th:text="${libro.isbn}"></th>
+                            <td th:text="${libro.titulo}"></td>
+                            <td th:text="${libro.ejemplares}"></td>
+                            <td th:text="${libro.alta}"></td>
+                            <td th:text="${libro.autor.nombre}"></td>
+                            <td th:text="${libro.editorial.nombre}"></td>                            
+                            <td sec:authorize="hasRole('ADMIN')">
+                                <a  th:href=@{/libro/modificar/__${libro.isbn}__}><i class="fas fa-feather-alt"></i>Modificar</a>
+                                <a  th:href=@{/libro/eliminar/__${libro.isbn}__}><i class="fas fa-feather-alt"></i>Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    </body>
+</html>
