@@ -9,6 +9,9 @@ import com.equipoQ.alquilerQuinchos.entidades.Usuario;
 import com.equipoQ.alquilerQuinchos.enums.Rol;
 import com.equipoQ.alquilerQuinchos.excepciones.MiException;
 import com.equipoQ.alquilerQuinchos.repositorios.UsuarioRepositorio;
+
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,22 +67,26 @@ public class UsuarioServicio {
         }
     }
    
-
-    
-    
     public boolean eliminarPorEmail(String email) {
         // Buscar el usuario por correo electrónico
-        Optional<Usuario> usuario = usuarioRepositorio.findById(email);
+        Optional<Usuario> respuesta = usuarioRepositorio.findById(email);
 
         // Verificar si el usuario existe antes de intentar eliminarlo
-        if (usuario != null) {
+        if (respuesta != null) {
+            Usuario usuario = respuesta.get();
             usuarioRepositorio.delete(usuario);
             return true;
         } else {
             return false;
         }
     }
-    
+
+    @Transactional //(readOnly=true)
+    public List<Usuario> listarUsuarios() {
+        List<Usuario> usuarios = new ArrayList();
+        usuarios = usuarioRepositorio.findAll();
+        return usuarios;
+    }
 
 }
                
