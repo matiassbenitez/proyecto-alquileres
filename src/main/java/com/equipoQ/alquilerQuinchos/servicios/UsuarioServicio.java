@@ -9,7 +9,6 @@ import com.equipoQ.alquilerQuinchos.entidades.Usuario;
 import com.equipoQ.alquilerQuinchos.enums.Rol;
 import com.equipoQ.alquilerQuinchos.excepciones.MiException;
 import com.equipoQ.alquilerQuinchos.repositorios.UsuarioRepositorio;
-
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -29,7 +28,8 @@ public class UsuarioServicio {
     private UsuarioRepositorio usuarioRepositorio;
 
     @Transactional
-    public void registrarUsuario(MultipartFile archivo, String nombre, String email, String password, String password2, Integer telefono) throws MiException {
+    public void registrarUsuario(MultipartFile archivo, String nombre, String email, String password, String password2,
+            Integer telefono) throws MiException {
 
         // validar(nombre, email, password, password2);
         Usuario usuario = new Usuario();
@@ -40,33 +40,34 @@ public class UsuarioServicio {
         usuario.setPassword(password);
         usuario.setRol(Rol.CLIENTE);
 
-        //usuario.setPassword(new BCryptPasswordEncoder().encode(password));
-        //Imagen imagen = imagenServicio.guardar(archivo);
+        // usuario.setPassword(new BCryptPasswordEncoder().encode(password));
+        // Imagen imagen = imagenServicio.guardar(archivo);
         // usuario.setImagen(imagen);
         usuarioRepositorio.save(usuario);
 
     }
 
     @Transactional
-    public void actualizar(MultipartFile archivo, String idUsuario, String nombre, String email, String password, String password2, Integer telefono) throws MiException {
-        //validar(nombre, email, password, password);
+    public void actualizar(MultipartFile archivo, String idUsuario, String nombre, String email, String password,
+            String password2, Integer telefono) throws MiException {
+        // validar(nombre, email, password, password);
         Optional<Usuario> respuesta = usuarioRepositorio.findById(idUsuario);
         if (respuesta.isPresent()) {
             Usuario usuario = respuesta.get();
             usuario.setNombre(nombre);
             usuario.setEmail(email);
-            //usuario.setPassword(new BCryptPasswordEncoder().encode(password));
+            // usuario.setPassword(new BCryptPasswordEncoder().encode(password));
             usuario.setPassword(password);
             usuario.setRol(Rol.CLIENTE);
-//         String idImagen = null;
-//         if (usuario.getImagen() != null) {
-//            idImagen = usuario.getImagen().getId();
-//            Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
-//            usuario.setImagen(imagen);
-//            usuarioRepositorio.save(usuario);
+            // String idImagen = null;
+            // if (usuario.getImagen() != null) {
+            // idImagen = usuario.getImagen().getId();
+            // Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
+            // usuario.setImagen(imagen);
+            // usuarioRepositorio.save(usuario);
         }
     }
-   
+
     public boolean eliminarPorEmail(String email) {
         // Buscar el usuario por correo electrónico
         Optional<Usuario> respuesta = usuarioRepositorio.findById(email);
@@ -87,18 +88,6 @@ public class UsuarioServicio {
         usuarios = usuarioRepositorio.findAll();
         return usuarios;
     }
-
 }
-               
-                       
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
+  
+  

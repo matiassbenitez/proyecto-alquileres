@@ -6,7 +6,6 @@
 package com.equipoQ.alquilerQuinchos.repositorios;
 
 import com.equipoQ.alquilerQuinchos.entidades.Usuario;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
